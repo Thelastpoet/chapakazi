@@ -1,0 +1,90 @@
+{% load static from staticfiles %}
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html lang="{{ LANGUAGE_CODE|default:"en-us" }}">
+    <head>
+    	 {% block blockbots %}<meta http-equiv="Content Type" content="text/html; charset=utf-8" />
+    	 	{% endblock %}		
+         <title>Chapa Kazi | {% block title %}{% endblock %}</title>
+         <link rel="stylesheet" type="text/css" href="{% block stylesheet %}
+         	{% static "chapa/css/style1.css" %}{% endblock %}" /> 
+        {% block extrastyle %}{% endblock %}
+        <!--[if lte IE 7]>
+        <style>
+        .content { margin-right: -1px; } /* this 1px negative margin can be placed on any of the 
+        columns in this layout with the same corrective effect. */
+        ul.nav a { zoom: 1; }  /* the zoom property gives IE the hasLayout trigger it needs to 
+        correct extra whiltespace between the links */
+        </style>
+        <![endif]-->   
+        <link type="text/css" href="/static/chapa/jquery/css/ui-lightness/jquery-ui-1.10.3.custom.css" 
+    		rel="Stylesheet" />
+    	<script type="text/javascript" src="/static/chapa/jquery/js/jquery-1.9.1.js"></script>
+    	<script type="text/javascript" src="/static/chapa/jquery/js/jquery-ui-1.10.3.custom.min.js">
+    		</script>  
+ 	 	{% block extrahead %}{% endblock %}     	    
+    	{{ form.media }}
+	</head>
+	<body>
+		<!-- Wrap starts here -->
+		<div id="wrap">
+			<!--header starts here-->
+			<div id="header">
+				<h1 id="logo-text"><a href="" title="">Chapa Kazi</a></h1>
+				<p id="intro">
+					This platform enables people to post tasks and get them done by professionals anywhere in 
+                    East Africa.
+				</p>	
+			<div id="nav">
+				<ul> 
+    				<li><a href="{% url 'chapakazi:index' %}">Home</a></li>
+    					{% if user.is_authenticated %}
+    				
+    				<li class="current_page_item">
+    					<a href="{% url 'accounts:profile' user.id %}"><strong>{% filter force_escape %}
+    					{% firstof user.get_short_name user.get_username %}{% endfilter %}
+    						</strong></a></li>
+    				<li><a href="{% url 'accounts:auth_logout' %}">Logout</a></li>
+    					{% else %}
+    				<li><a href="{% url 'accounts:auth_login' %}">Login</a></li>
+    				<li><a href="{% url 'accounts:registration_register' %}">Register</a></li>
+    					{% endif %}
+    			</ul>					
+			</div>
+			<!--header ends -->
+			</div>
+			<!-- content-wrap starts -->
+			<div id="content-wrap">
+				<div id="main">
+					{% block content %}{% endblock %}
+				<!-- main ends -->
+				</div>		
+				<!-- side bar starts-->
+				
+				
+				<div id="sidebar">
+					{% block sidebar %}{% endblock %}
+				<!-- side bar ends -->
+				</div>			
+			<!-- content-wrap ends --> 
+			</div>
+			<!-- footer starts here -->
+			<div id="footer-left">
+				<p>
+				&copy; Chapa Kazi	&nbsp;
+					<a href="#" title="Attribution">Attribution</a> by <a href="#">poet</a> &nbsp;
+			
+						Valid: <a href="http://validator.w3.org/check/referer">XHTML</a> | 
+					<a href="http://jigsaw.w3.org/css-validator/check/referer">CSS</a>		
+				</p>	
+			</div>
+			<div id="footer-right">
+				<p class="align-right">
+					<a href="/center/">Home</a> | <a href="#">Sitemap</a> | <a href="#" class="rssfeed">RSS Feed</a> 
+				</p>
+			</div>
+			<!-- footer ends here -->
+		</div>
+		<!-- wrap ends here -->
+	</body>
+</html>

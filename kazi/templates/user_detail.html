@@ -1,0 +1,62 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% block title %}{{ object.first_name }}{% endblock %}
+{% block sidebar %}
+{% if user.is_authenticated %}
+<h3>User Actions</h3>
+	<ul class="sidemenu">
+		<li><a href="{% url 'chapakazi:create-task' %}">Create Task</a></li>
+		<li><a href="{% url 'chapakazi:task-list' %}">View Availlable Tasks</a></li>
+		<li><a href="{% url 'chapakazi:apply-task' %}">Apply for Tasks</a></li>		
+	</ul>
+
+<h3>User List</h3>
+	<ul class="sidemenu">
+		{% if user_list %}
+			{% for user in user_list %}
+				<li><a href="{% url 'accounts:profile' user.id %}">{{ user.first_name }} 
+					{{ user.last_name }}</a></li>
+			{% endfor %}
+		{% endif %}
+	</ul>
+{% endif %}
+{% endblock %}
+
+{% block content %}
+<h2>{{ object.first_name }}'s Profile</h2>
+<form action="/search/" method="get">
+	<label for="id_q">Search:</label>
+		<input id="id_q" name="=q" type="text">
+		<input type="submit" value="Submit">
+		
+		</form>
+<p>Please add some content here</p>
+<h2>User List</h2>
+<table border="1" class="order">
+  <thead>
+    <tr>
+    <th>{% trans "First Name" %}</th>
+    <th>{% trans "Last Name" %}</th>
+    <th>{% trans "Gender" %}</th>
+    <th>{% trans "Location" %}</th>
+    <th>{% trans "Skills" %}</th>
+    <th>{% trans "Other Skills" %}</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    {% for user in user_list %}
+      <tr>
+        <td><a href="{% url 'accounts:profile' user.id %}">{{ user.first_name }}</a></td>
+        <td>{{ user.last_name }}</td>
+        <td>{{ user.get_gender_display }}</td>
+        <td>{{ user.location }}</td>
+        <td>{{ user.get_skills_display }}</td>
+        <td>{{ user.other_skills }}</td>
+      </tr> 
+    {% endfor %}
+  </tbody>
+
+</table>
+
+{% endblock %}

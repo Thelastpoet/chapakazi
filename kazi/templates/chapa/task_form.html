@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+{% block title %} Create Project {% endblock %}
+{% block content %}
+		<h2>Chapa Kazi Coming Soon Ingojee</h2>
+		<form method="post" action="."> {% csrf_token %}
+		{{ form.as_p }}
+		<input type="submit" value="Submit" />
+		</form>
+		<script>
+        $(function() {
+            $( "#id_due_date" ).datepicker({
+                yearRange: "2007:2013",
+                });
+        });
+    </script>
+{% endblock %}
+
+

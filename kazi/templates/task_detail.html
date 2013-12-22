@@ -1,0 +1,9 @@
+{% extends "base.html" %}
+
+{% block content %}
+	<p>{{ task.title| upper }}</p>
+		Published on {{ task.pub_date }} by {{ task.owner.first_name }}
+	
+	<p>Description: {{ task.description }}</p>
+	<p><a href="{% url 'chapakazi:apply-task' %}">Apply for This Task</a></p>
+{% endblock %}

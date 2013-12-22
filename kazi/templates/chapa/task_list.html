@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h2>Task List Available</h2>
+{% for task in object_list %}
+	<li><a href="{% url 'chapakazi:task-detail' task.id %}">{{ task.title }}</a>
+		(<a href="{% url 'chapakazi:task-edit' task.id %}">Edit Task</a>)
+	</li>
+
+{% endfor %}
+{% endblock %}

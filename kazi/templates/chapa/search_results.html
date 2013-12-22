@@ -1,0 +1,9 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<form>
+	You searched for "{{ search_string }}" and here are the results
+	<li>{{ form.as_p }}</li>
+</form>
+{% endblock %}

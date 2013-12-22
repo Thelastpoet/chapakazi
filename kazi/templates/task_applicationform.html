@@ -1,0 +1,9 @@
+{% extends "base.html" %}
+
+{% block content %}
+<form method="post" action="{% url 'chapakazi:apply-task' %}">	
+	{% csrf_token %}
+	{{ form.as_p }}
+	<input type="submit" value="Apply" />
+</form>
+{% endblock %}

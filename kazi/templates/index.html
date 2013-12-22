@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+{% block title %} Home {% endblock %}
+
+{% block sidebar %}
+<div>
+	<table>
+		<tbody>
+			<td>Adverts Here</td>
+		</tbody>
+	</table>
+</div>
+
+{% endblock %}
+	
+{% block content %}
+{% if user.is_authenticated %}
+<h2>Chapa Kazi Coming Sooon</h2>
+		<p>We are going to have an online platform for workers to work online</p>
+		<p>Someone will be able to login, find work or hire freelencers </p>
+
+<p>Project: Online jobs 
+An online platfrom where people can register and offer their skills. Users can log on and find skilled people to do their tasks. Hire Freelancers.
+
+Features:
+a.	Main page to show:
+A welcome page and a brief intro of what the website is all about.
+b.	Options to log in for existing users, register for new users.
+c.	Listing of current job offers advertised (Users need to be registered so as to view more details and be able to bid for the jobs adverised.
+d.	Options for employee and experts to register separately but the log in page should be the same.
+</p>
+{% else %}
+
+<p>Looking for work Register HERE......</p>
+
+<p>Want to hire people Register Here.....</p>
+{% endif %}
+{% endblock %}
+
+
